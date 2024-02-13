@@ -6,6 +6,8 @@ import { Button } from './ui/button';
 const HomeComponent = () => {
 	const [count, setCount] = useState(0);
 
+	const [yes, setYes] = useState(false);
+
 	const handleClick = () => {
 		if (count >= 0 && count <= 180) {
 			setCount((c) => c + 30);
@@ -14,11 +16,20 @@ const HomeComponent = () => {
 		}
 	};
 
+	const handleYes = () => {
+		setYes(true);
+		setCount(0);
+	};
+
 	return (
 		<div>
 			<div className='w-full justify-center items-center flex my-4'>
 				<Image
-					src='https://media.tenor.com/eiMqmu0vXz8AAAAi/kiss.gif'
+					src={
+						yes
+							? 'https://media1.tenor.com/m/4Ir5RyvZPTEAAAAC/hugging.gif'
+							: 'https://media.tenor.com/eiMqmu0vXz8AAAAi/kiss.gif'
+					}
 					alt='Teddys Kissing'
 					width={200}
 					height={300}
@@ -26,30 +37,35 @@ const HomeComponent = () => {
 			</div>
 
 			<div className='w-full justify-center items-center flex my-4'>
-				<p className='text-center text-5xl'>Will you be my valentine?</p>
+				<p className='text-center text-5xl'>
+					{yes ? "It's a date" : 'Will you be my valentine?'}
+				</p>
 			</div>
-			<div className='flex flex-row w-full justify-center items-center my-4'>
-				<div className='mx-1'>
-					<Button
-						className='bg-green-500'
-						style={{
-							height: 35 + count,
-							width: 50 + count,
-						}}>
-						<p
+			{!yes && (
+				<div className='flex flex-row w-full justify-center items-center my-4'>
+					<div className='mx-1'>
+						<Button
+							className='bg-green-500'
 							style={{
-								fontSize: count > 0 ? count / 2 : 14,
-							}}>
-							Yes
-						</p>
-					</Button>
+								height: 35 + count,
+								width: 50 + count,
+							}}
+							onClick={handleYes}>
+							<p
+								style={{
+									fontSize: count > 0 ? count / 2 : 14,
+								}}>
+								Yes
+							</p>
+						</Button>
+					</div>
+					<div className='mx-1'>
+						<Button className='bg-red-500' onClick={handleClick}>
+							No
+						</Button>
+					</div>
 				</div>
-				<div className='mx-1'>
-					<Button className='bg-red-500' onClick={handleClick}>
-						No
-					</Button>
-				</div>
-			</div>
+			)}
 		</div>
 	);
 };
