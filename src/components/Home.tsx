@@ -24,16 +24,21 @@ const HomeComponent = () => {
 	return (
 		<div>
 			<div className='w-full justify-center items-center flex my-4'>
-				<Image
-					src={
-						yes
-							? 'https://media1.tenor.com/m/4Ir5RyvZPTEAAAAC/hugging.gif'
-							: 'https://media.tenor.com/eiMqmu0vXz8AAAAi/kiss.gif'
-					}
-					alt='Teddys Kissing'
-					width={200}
-					height={300}
-				/>
+				{yes ? (
+					<Image
+						src={'https://media1.tenor.com/m/4Ir5RyvZPTEAAAAC/hugging.gif'}
+						alt='Teddys Kissing'
+						width={200}
+						height={300}
+					/>
+				) : (
+					<Image
+						src={'https://media.tenor.com/eiMqmu0vXz8AAAAi/kiss.gif'}
+						alt='Teddys Kissing'
+						width={200}
+						height={300}
+					/>
+				)}
 			</div>
 
 			<div className='w-full justify-center items-center flex my-4'>
